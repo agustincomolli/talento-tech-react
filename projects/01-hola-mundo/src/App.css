@@ -1,0 +1,55 @@
+.follow-card {
+  display: flex;
+  color: #fff;
+  align-items: center;
+  font-size: .8rem;
+  justify-content: space-between;
+}
+
+.follow-card__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.follow-card__user {
+  display: flex;
+  flex-direction: column;
+}
+
+.follow-card__username {
+  opacity: .6;
+}
+
+.follow-card__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 1000px;
+}
+
+.follow-card__button {
+  margin-left: 16px;
+  border: 0;
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border: 1px solid black;
+  transition: .3s ease background-color;
+}
+
+.follow-card__button:hover {
+  background-color: #c4c3c3fd;
+}
+
+.follow-card__button--following {
+  border: 1px solid red;
+  background-color: #222;
+  color: white;
+}
+
+.follow-card__button--following:hover {
+  color: red;
+  background-color: #222;
+  content: "Dejar de seguir";
+}

@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 
+  Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-align: center;
+}
+
+.greeting-button {
+  padding: .5rem 2.5rem;
+  margin-top: 3rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+  background-color:dodgerblue;
+  border: 3px solid blue;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.greeting-button:hover {
+  background-color: lightblue;
+  border: 3px solid dodgerblue;
+}
