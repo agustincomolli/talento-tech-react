@@ -24,9 +24,9 @@ body {
 .app-header__title {
   color: #fff;
   margin: 0;
+  font-size: 4rem;
 }
 
 .app-header__logo {
   fill: #fff;
-
 }

@@ -4,12 +4,13 @@
   align-items: center;
   font-size: .8rem;
   justify-content: space-between;
+  gap: 4px;
 }
 
 .follow-card__header {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
 }
 
 .follow-card__user {
@@ -43,13 +44,31 @@
 }
 
 .follow-card__button--following {
+  background-color: transparent;
   border: 1px solid red;
-  background-color: #222;
   color: white;
+  width: 140px;
 }
 
 .follow-card__button--following:hover {
   color: red;
-  background-color: #222;
-  content: "Dejar de seguir";
+  background-color: rgba(255, 0, 0, 0.100);
+  transition: .3s ease background-color;
+  opacity: 1;
+}
+
+.follow-card__button--following:hover .follow-card__stop-follow-text {
+  display: block;
+}
+
+.follow-card__button--following:hover .follow-card__follow-text{
+  display: none;
+}
+
+.follow-card__follow-text {
+  display: block;
+}
+
+.follow-card__stop-follow-text {
+  display: none;
 }
