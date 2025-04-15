@@ -1,0 +1,16 @@
+.appWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.subtitle {
+  margin-bottom: .5rem;
+}
+
+.teamMembers,
+.projectCard {
+  margin-bottom: 1rem;
+}

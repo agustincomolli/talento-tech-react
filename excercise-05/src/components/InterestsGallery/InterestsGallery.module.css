@@ -1,0 +1,10 @@
+.gallery {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0 1rem 1rem;
+}
+
+.button:focus {
+  background-color: #646cff;
+}

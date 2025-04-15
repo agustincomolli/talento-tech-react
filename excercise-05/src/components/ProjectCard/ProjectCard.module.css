@@ -1,0 +1,39 @@
+.projectCard {
+  box-sizing: border-box;
+  width: 400px;
+  border:1px solid navy;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.header {
+  background-color: navy;
+  color: white;
+  padding: .5rem;
+}
+
+.title {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.main {
+  padding: .5rem 1rem;
+}
+
+.footer {
+  padding: .5rem 1rem;
+}
+
+.btn {
+  background-color: navy;
+  color: white;
+  margin-bottom: .5rem;
+}
+
+.btn:hover {
+  filter: drop-shadow(0 8px .5rem navy);
+  transition: .3s ease-out all;
+}
