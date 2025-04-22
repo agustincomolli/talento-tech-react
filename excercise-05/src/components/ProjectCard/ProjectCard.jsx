@@ -19,5 +19,5 @@ export default function ProjectCard({ className, title, description, buttonText 
 }
 
 function handleClick(projectName) {
-    console.log(`Explorando: ${projectName}`)
+    alert(`Explorando: ${projectName}`)
 }
