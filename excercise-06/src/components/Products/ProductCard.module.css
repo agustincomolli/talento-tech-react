@@ -1,0 +1,32 @@
+.productCard {
+  border: 1px solid var(--border-color);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-lg);
+  text-align: center;
+}
+
+.productCard img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.productCard h3 {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.productCard p {
+  margin-bottom: 10px;
+  color: var(--text-secondary);
+}
+
+/* .productCard button {
+  padding: 8px 15px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+} */
+  

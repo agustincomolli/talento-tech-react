@@ -1,0 +1,29 @@
+footer {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+footer h4 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+footer ul li a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.copyright {
+  text-align: center;
+  padding-top: 15px;
+  font-size: var(--font-size-sm);
+}
