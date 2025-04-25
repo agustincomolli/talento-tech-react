@@ -1,0 +1,46 @@
+/* Estilos para el carrito desplegable (inicialmente oculto) */
+.cartDropdown {
+  top: 60px;
+  /* Ajustar según la altura del header */
+  position: absolute;
+  right: 20px;
+  background-color: var(--bg-white);
+  border: 1px solid var(--border-color-medium);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+  width: 300px;
+  box-shadow: var(--shadow-sm);
+  /* Asegurar que esté por encima de otros elementos */
+  z-index: 10;
+}
+
+.cartItems {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 10px;
+}
+
+.cartItems li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm) 0;
+  border-bottom: 1px solid var(--border-color-light);
+}
+
+.cartItems li:last-child {
+  border-bottom: none;
+}
+
+.cartSummary {
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.cartSummary p {
+  margin: 1rem 0;
+}
+
+.cartSummaryButton {
+  margin-left: 10px;
+}

@@ -1,8 +1,4 @@
 .main {
   flex-grow: 1;
-  padding: 20px;
-}
-
-.title {
-  margin-bottom: 15px;
+  padding: var(--spacing-lg);
 }
