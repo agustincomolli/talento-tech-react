@@ -1,5 +1,9 @@
 import styles from "./Nav.module.css"
 
+/**
+ * Componente de navegación principal.
+ * Muestra enlaces a distintas categorías.
+ */
 export default function Nav() {
     return (
         <nav className={styles.nav}>

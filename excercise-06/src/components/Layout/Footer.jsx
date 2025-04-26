@@ -1,5 +1,9 @@
 import styles from "./Footer.module.css"
 
+/**
+ * Componente de pie de página.
+ * Muestra información de contacto, enlaces útiles y derechos de autor.
+ */
 export default function Footer() {
     return (
         <footer className={styles.footer}>

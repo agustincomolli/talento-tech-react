@@ -3,13 +3,20 @@ import Cart from "./components/Cart/Cart"
 import ProductList from "./components/Products/ProductList"
 import Layout from "./components/Layout/Layout"
 
+/**
+ * Componente principal de la aplicación de tienda online.
+ * Maneja el estado global del carrito y la visibilidad del mismo.
+ */
 function App() {
-  // Este estado controla si se muestra el carrito de compras.
+  // Estado para mostrar u ocultar el carrito de compras.
+  // useState retorna un array con el valor actual y una función para actualizarlo.
   const [showCart, setShowCart] = useState(false);
-  // Estado para controlar el carrito de compras.
+
+  // Estado que contiene la lista de productos agregados al carrito.
+  // Cada elemento es un objeto con id, image, name, price y quantity.
   const [cartItemsList, setCartItemsList] = useState([])
 
-  // Datos de ejemplo.
+  // Lista de productos disponibles en la tienda (datos de ejemplo).
   const products = [
     { id: 1, image: "https://picsum.photos//150", name: "Producto 1", price: 1590 },
     { id: 2, image: "https://picsum.photos//150", name: "Producto 2", price: 2580 },
@@ -22,14 +29,25 @@ function App() {
     { id: 9, image: "https://picsum.photos//150", name: "Producto 9", price: 9510 },
   ];
 
+  /**
+   * Alterna la visibilidad del carrito de compras.
+   * Cambia el valor de showCart entre true y false.
+   */
   function toggleCart() {
     setShowCart(!showCart);
   };
 
+  /**
+   * Agrega un producto al carrito.
+   * Si el producto ya existe, incrementa su cantidad.
+   * Si no existe, lo agrega con cantidad 1.
+   * @param {Object} product - Producto a agregar al carrito.
+   */
   function addToCart(product) {
     const existingItem = cartItemsList.find(item => item.id === product.id)
 
     if (existingItem) {
+      // Si el producto ya está en el carrito, aumenta la cantidad.
       setCartItemsList(
         cartItemsList.map(item =>
           item.id === product.id
@@ -38,11 +56,15 @@ function App() {
         )
       )
     } else {
+      // Si no está, lo agrega con cantidad 1.
       setCartItemsList([...cartItemsList, { ...product, quantity: 1 }])
     }
-
   };
 
+  /**
+   * Calcula la cantidad total de productos en el carrito.
+   * @returns {number} Suma de las cantidades de todos los productos.
+   */
   function getTotalItemCount() {
     let totalQuantity = 0;
 
@@ -52,10 +74,15 @@ function App() {
     return totalQuantity
   }
 
+  // Renderiza la estructura principal de la app.
+  // Pasa funciones y estados como props a los componentes hijos.
   return (
     <>
+      {/* Layout recibe funciones y datos como props */}
       <Layout toggleCart={toggleCart} cartItemCount={getTotalItemCount()}>
+        {/* Lista de productos, recibe la función para agregar al carrito */}
         <ProductList products={products} addToCart={addToCart} />
+        {/* Carrito, solo se muestra si showCart es true */}
         {showCart && <Cart items={cartItemsList} setItems={setCartItemsList} />}
       </Layout>
     </>

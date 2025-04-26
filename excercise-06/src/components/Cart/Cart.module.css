@@ -1,7 +1,6 @@
-/* Estilos para el carrito desplegable (inicialmente oculto) */
 .cartDropdown {
-  top: 60px;
   /* Ajustar según la altura del header */
+  top: 60px;
   position: absolute;
   right: 20px;
   background-color: var(--bg-white);
@@ -20,7 +19,8 @@
   margin-bottom: 10px;
 }
 
-.cartItems li {
+.cartItem {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -28,8 +28,57 @@
   border-bottom: 1px solid var(--border-color-light);
 }
 
-.cartItems li:last-child {
+.cartItem:last-child {
   border-bottom: none;
+}
+
+.itemInfo {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.itemInfo h4 {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  display: flex;
+  align-items: center;
+}
+
+.itemInfo p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  display: flex;
+  align-items: center;
+}
+
+.itemControls {
+  font-size: var(--font-size-sm);
+  display: flex;
+  align-items: center;
+}
+
+.itemControls button {
+  background: none;
+  border: 1px solid var(--border-color);
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius);
+}
+
+.itemControls span {
+  margin: 0 var(--spacing-xs);
+}
+
+.removeBtn {
+  margin-left: var(--spacing-xs);
+  color: red;
 }
 
 .cartSummary {
