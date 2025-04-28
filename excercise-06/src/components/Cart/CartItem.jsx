@@ -10,6 +10,18 @@ import styles from "./Cart.module.css"
  * @param {Function} props.removeItem - Función para eliminar el producto.
  */
 export default function CartItem({ item, updateQuantity, removeItem }) {
+    function handleIncreaseQuantity() {
+        updateQuantity(item.id, item.quantity + 1)
+    };
+
+    function handleDecreaseQuantity() {
+        updateQuantity(item.id, item.quantity - 1)
+    };
+
+    function handleRemoveItem() {
+        removeItem(item.id)
+    };
+
     return (
         <div className={styles.itemInfo}>
             {/* Nombre del producto */}
@@ -19,12 +31,12 @@ export default function CartItem({ item, updateQuantity, removeItem }) {
             {/* Controles para modificar cantidad y eliminar */}
             <div className={styles.itemControls}>
                 {/* Botón para disminuir cantidad */}
-                <button onClick={() => updateQuantity(item.id, item.quantity - 1)}>-</button>
+                <button onClick={handleDecreaseQuantity}>-</button>
                 <span>{item.quantity}</span>
                 {/* Botón para aumentar cantidad */}
-                <button onClick={() => updateQuantity(item.id, item.quantity + 1)}>+</button>
+                <button onClick={handleIncreaseQuantity}>+</button>
                 {/* Botón para eliminar producto */}
-                <button className={styles.removeBtn} onClick={() => removeItem(item.id)}>×</button>
+                <button className={styles.removeBtn} onClick={handleRemoveItem}>×</button>
             </div>
         </div>
     );

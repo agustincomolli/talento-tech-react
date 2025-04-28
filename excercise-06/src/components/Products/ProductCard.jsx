@@ -9,6 +9,10 @@ import styles from "./ProductCard.module.css"
  * @param {Function} props.addToCart - Función para agregar el producto al carrito.
  */
 export default function ProductCard({ product, addToCart }) {
+    function handleClick() {
+        addToCart(product)
+    };
+
     return (
         <div className={styles.productCard}>
             {/* Imagen del producto */}
@@ -18,7 +22,7 @@ export default function ProductCard({ product, addToCart }) {
             {/* Precio del producto */}
             <p>$ {product.price}</p>
             {/* Botón para agregar al carrito */}
-            <button className={`btn btn-success`} onClick={() => addToCart(product)}>Agregar al Carrito</button>
+            <button className={`btn btn-success`} onClick={handleClick}>Agregar al Carrito</button>
         </div>
     );
 }
