@@ -1,7 +1,6 @@
 import { useState } from "react"
-import Cart from "./components/Cart/Cart"
-import ProductList from "./components/Products/ProductList"
 import Layout from "./components/Layout/Layout"
+import Home from "./pages/Home";
 
 /**
  * Componente principal de la aplicación de tienda online.
@@ -80,10 +79,13 @@ function App() {
     <>
       {/* Layout recibe funciones y datos como props */}
       <Layout toggleCart={toggleCart} cartItemCount={getTotalItemCount()}>
-        {/* Lista de productos, recibe la función para agregar al carrito */}
-        <ProductList products={products} addToCart={addToCart} />
-        {/* Carrito, solo se muestra si showCart es true */}
-        {showCart && <Cart items={cartItemsList} setItems={setCartItemsList} />}
+        <Home
+          products={products}
+          addToCart={addToCart}
+          showCart={showCart}
+          cartItemsList={cartItemsList}
+          setCartItemsList={setCartItemsList}
+        />
       </Layout>
     </>
   )
