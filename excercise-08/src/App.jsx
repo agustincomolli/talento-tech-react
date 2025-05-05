@@ -12,6 +12,15 @@ import styles from "./App.module.css"
 /**
  * Componente principal de la aplicación de tienda online.
  * Maneja el estado global del carrito y la visibilidad del mismo.
+ * 
+ * Configura las rutas principales de la aplicación usando React Router:
+ * - "/"         : Página principal con productos y carrito.
+ * - "/faq"      : Página de preguntas frecuentes.
+ * - "/terms"    : Página de términos y condiciones.
+ * - "/policies" : Página de políticas de privacidad.
+ * 
+ * Cada ruta puede recibir props si necesita mostrar el carrito o manipular el estado global.
+ * Se utiliza lógica condicional en la ruta "/" para mostrar un spinner, un mensaje de error o el contenido principal según el estado de la app.
  */
 function App() {
   // Estado para mostrar u ocultar el carrito de compras.
@@ -43,7 +52,11 @@ function App() {
     const fetchProducts = async () => {
       try {
         setLoading(true) // Indica que la carga ha comenzado
-        const response = await fetch("https://6810b69527f2fdac24127f97.mockapi.io/api/products");
+        // Si uso mockapi los campos son product.name, product.price, product.image
+        // const response = await fetch("https://6810b69527f2fdac24127f97.mockapi.io/api/products");
+        
+        // Si uso dummyjson los campos son procut.title, product.price, product.images[0]
+        const response = await fetch("https://dummyjson.com/products");
 
         if (!response.ok) {
           // Si la respuesta no es exitosa, lanza un error
@@ -52,9 +65,9 @@ function App() {
 
         const data = await response.json();
 
-        // Simula una demora de 2 segundos antes de mostrar los productos
+        // Simula una demora de 4 segundos antes de mostrar los productos
         setTimeout(() => {
-          setProducts(data); // Guarda los productos en el estado
+          setProducts(data.products); // Guarda los productos en el estado
           setError(null);    // Limpia cualquier error anterior          
           setLoading(false); // Indica que la carga ha finalizado
         }, 4000);
@@ -116,43 +129,62 @@ function App() {
     return totalQuantity
   }
 
+  function getHomeComponent({ loading, error, products, addToCart, showCart, cartItemsList, setCartItemsList, styles }) {
+    if (loading) {
+      /* Spinner y mensaje de carga centrados */
+      return (
+        <div className={styles.spinnerContainer}>
+          <div className={styles.spinner}></div>
+          <h2 className={styles.loadingText}>Cargando productos</h2>
+        </div>
+      );
+    }
+
+    if (error) {
+      /* Mensaje de error si ocurre un problema al cargar */
+      return (
+        <div className={styles.errorContainer}>
+          <p className={styles.errorText}>Error: {error}</p>
+        </div>
+      );
+    }
+
+    /* Renderiza Home solo si no está cargando ni hay error */
+    return (
+      <Home
+        products={products}
+        addToCart={addToCart}
+        showCart={showCart}
+        cartItemsList={cartItemsList}
+        setCartItemsList={setCartItemsList}
+      />
+    );
+  }
+
   // Renderiza la estructura principal de la app.
   // Pasa funciones y estados como props a los componentes hijos.
+  // 
+  // <Routes> define las rutas de la aplicación:
+  // - La ruta "/" usa lógica condicional para mostrar un spinner, un error o el componente Home.
+  // - Las rutas "/faq", "/terms" y "/policies" muestran sus páginas correspondientes y reciben props si necesitan mostrar el carrito.
   return (
     <>
       {/* Layout recibe funciones y datos como props */}
       <Layout toggleCart={toggleCart} cartItemCount={getTotalItemCount()}>
         <Routes>
+          {/* Ruta principal: muestra spinner, error o Home según el estado */}
           <Route
             path="/"
             element={
-              loading ? (
-                /* Spinner y mensaje de carga centrados */
-                <Main>
-                  <div className={styles.spinnerContainer}>
-                    <div className={styles.spinner}></div>
-                    <h2 className={styles.loadingText}>Cargando productos</h2>
-                  </div>
-                </Main>
-              ) : error ? (
-                /* Mensaje de error si ocurre un problema al cargar */
-                <Main>
-                  <div className={styles.errorContainer}>
-                    <p className={styles.errorText}>Error: {error}</p>
-                  </div>
-                </Main>
-              ) : (
-                /* Renderiza Home solo si no está cargando ni hay error */
-                <Home
-                  products={products}
-                  addToCart={addToCart}
-                  showCart={showCart}
-                  cartItemsList={cartItemsList}
-                  setCartItemsList={setCartItemsList}
-                />
-              )
+              <Main>
+                {getHomeComponent({
+                  loading, error, products, addToCart, showCart,
+                  cartItemsList, setCartItemsList, styles
+                })}
+              </Main>
             }
           />
+          {/* Rutas estáticas para páginas informativas */}
           <Route
             path="/faq"
             element={

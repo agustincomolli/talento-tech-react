@@ -25,7 +25,7 @@ export default function CartItem({ item, updateQuantity, removeItem }) {
     return (
         <div className={styles.itemInfo}>
             {/* Nombre del producto */}
-            <h4>{item.name}</h4>
+            <h4>{item.title}</h4>
             {/* Precio unitario */}
             <p>$ {item.price}</p>
             {/* Controles para modificar cantidad y eliminar */}

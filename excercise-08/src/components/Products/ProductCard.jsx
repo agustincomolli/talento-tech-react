@@ -16,9 +16,9 @@ export default function ProductCard({ product, addToCart }) {
     return (
         <div className={styles.productCard}>
             {/* Imagen del producto */}
-            <img src={product.image} alt={product.name} />
+            <img src={product.images[0]} alt={product.title} />
             {/* Nombre del producto */}
-            <h3>{product.name}</h3>
+            <h3>{product.title}</h3>
             {/* Precio del producto */}
             <p>$ {product.price}</p>
             {/* Botón para agregar al carrito */}
