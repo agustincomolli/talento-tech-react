@@ -1,8 +1,12 @@
-import { useState } from "react"
-import Layout from "./components/Layout/Layout"
-import Main from "./components/Layout/Main";
-import Home from "./pages/Home";
+import { useState } from "react";
 import { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Faq from "./pages/Faq";
+import Policies from "./pages/Policies";
+import Terms from "./pages/Terms";
+import Layout from "./components/Layout/Layout";
+import Main from "./components/Layout/Main";
 import styles from "./App.module.css"
 
 /**
@@ -118,35 +122,65 @@ function App() {
     <>
       {/* Layout recibe funciones y datos como props */}
       <Layout toggleCart={toggleCart} cartItemCount={getTotalItemCount()}>
-        {/* Spinner y mensaje de carga centrados */}
-        {loading && (
-          <Main>
-            <div className={styles.spinnerContainer}>
-              <div className={styles.spinner}></div>
-              <h2 className={styles.loadingText}>Cargando productos</h2>
-            </div>
-          </Main>
-        )}
-
-        {/* Mensaje de error si ocurre un problema al cargar */}
-        {error && (
-          <Main>
-          <div className={styles.errorContainer}>
-            <p className={styles.errorText}>Error: {error}</p>
-          </div>
-          </Main>
-        )}
-
-        {/* Renderiza Home solo si no está cargando ni hay error */}
-        {!loading && !error &&
-          <Home
-            products={products}
-            addToCart={addToCart}
-            showCart={showCart}
-            cartItemsList={cartItemsList}
-            setCartItemsList={setCartItemsList}
+        <Routes>
+          <Route
+            path="/"
+            element={
+              loading ? (
+                /* Spinner y mensaje de carga centrados */
+                <Main>
+                  <div className={styles.spinnerContainer}>
+                    <div className={styles.spinner}></div>
+                    <h2 className={styles.loadingText}>Cargando productos</h2>
+                  </div>
+                </Main>
+              ) : error ? (
+                /* Mensaje de error si ocurre un problema al cargar */
+                <Main>
+                  <div className={styles.errorContainer}>
+                    <p className={styles.errorText}>Error: {error}</p>
+                  </div>
+                </Main>
+              ) : (
+                /* Renderiza Home solo si no está cargando ni hay error */
+                <Home
+                  products={products}
+                  addToCart={addToCart}
+                  showCart={showCart}
+                  cartItemsList={cartItemsList}
+                  setCartItemsList={setCartItemsList}
+                />
+              )
+            }
           />
-        }
+          <Route
+            path="/faq"
+            element={
+              <Faq
+                showCart={showCart}
+                cartItemsList={cartItemsList}
+                setCartItemsList={setCartItemsList}
+              />}
+          />
+          <Route
+            path="/terms"
+            element={
+              <Terms
+                showCart={showCart}
+                cartItemsList={cartItemsList}
+                setCartItemsList={setCartItemsList}
+              />}
+          />
+          <Route
+            path="/policies"
+            element={
+              <Policies
+                showCart={showCart}
+                cartItemsList={cartItemsList}
+                setCartItemsList={setCartItemsList}
+              />}
+          />
+        </Routes>
       </Layout>
     </>
   )

@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 export default function Faq({ showCart, cartItemsList, setCartItemsList }) {
   return (
-    <>
+    <div className="pageContent">
       <h2>Preguntas Frecuentes</h2>
       <h3>1. ¿Cómo realizo un pedido?</h3>
       <p>
@@ -8,7 +10,7 @@ export default function Faq({ showCart, cartItemsList, setCartItemsList }) {
       </p>
       <h3>2. ¿Cuáles son sus opciones de pago?</h3>
       <p>
-        Aceptamos [Lista de métodos de pago, e.g., tarjetas de crédito, PayPal, etc.].
+        Aceptamos tarjetas de crédito, débito, Mercado Pago, PayPal, etc.
       </p>
       <h3>3. ¿Cuáles son sus opciones de envío?</h3>
       <p>
@@ -16,7 +18,7 @@ export default function Faq({ showCart, cartItemsList, setCartItemsList }) {
       </p>
       <h3>4. ¿Cuál es su política de devoluciones?</h3>
       <p>
-        Aceptamos devoluciones de productos sin usar dentro de los [Número] días de la fecha de compra. Consulte nuestra <a href="politica-de-devoluciones.html">Política de Devoluciones</a> para obtener más detalles.
+        Aceptamos devoluciones de productos sin usar dentro de los [Número] días de la fecha de compra. Consulte nuestra <Link to="/policies">Política de Devoluciones</Link> para obtener más detalles.
       </p>
       <h3>5. ¿Cómo puedo contactarlos?</h3>
       <p>
@@ -32,6 +34,6 @@ export default function Faq({ showCart, cartItemsList, setCartItemsList }) {
       </p>
       {/* Carrito, solo se muestra si showCart es true */}
       {showCart && <Cart items={cartItemsList} setItems={setCartItemsList} />}
-    </>
+    </div>
   );
 }

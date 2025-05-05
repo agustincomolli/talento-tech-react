@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./Footer.module.css"
 
 /**
@@ -15,9 +16,9 @@ export default function Footer() {
             <div className="useful-links">
                 <h4>Enlaces Útiles</h4>
                 <ul>
-                    <li><a href="#">Términos y Condiciones</a></li>
-                    <li><a href="#">Política de Privacidad</a></li>
-                    <li><a href="#">Preguntas Frecuentes</a></li>
+                    <li><Link to="/terms">Términos y Condiciones</Link></li>
+                    <li><Link to="/policies">Política de Privacidad</Link></li>
+                    <li><Link to="faq">Preguntas Frecuentes</Link></li>
                 </ul>
             </div>
             <div className="copyright">

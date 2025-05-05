@@ -35,3 +35,22 @@ body {
   background-color: var(--color-success);
   color: var(--text-light);
 }
+
+.pageContent {
+  padding: 2.5rem;
+  line-height: 1.5;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.pageContent h2{
+  margin-bottom: 1.25rem;
+}
+
+.pageContent h3 {
+  margin: 1.15rem 0;
+}
+
+.pageContent p{
+  margin: 1rem 0;
+}

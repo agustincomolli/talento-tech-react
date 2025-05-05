@@ -1,7 +1,7 @@
 
 export default function Terms({ showCart, cartItemsList, setCartItemsList }) {
   return (
-    <>
+    <div className="pageContent">
       <h2>Términos y Condiciones</h2>
       <p>
         Bienvenido a nuestra tienda online. Al acceder y utilizar este sitio web, usted acepta cumplir y estar sujeto a los siguientes términos y condiciones de uso.
@@ -20,11 +20,11 @@ export default function Terms({ showCart, cartItemsList, setCartItemsList }) {
       </p>
       <h3>4. Propiedad Intelectual</h3>
       <p>
-        Todos los contenidos de este sitio web (textos, gráficos, logos, etc.) son propiedad de [Nombre de la Empresa] o de sus licenciantes y están protegidos por las leyes de propiedad intelectual.
+        Todos los contenidos de este sitio web (textos, gráficos, logos, etc.) son propiedad de Mi Tienda Online o de sus licenciantes y están protegidos por las leyes de propiedad intelectual.
       </p>
       <h3>5. Limitación de Responsabilidad</h3>
       <p>
-        En la medida en que lo permita la ley, [Nombre de la Empresa] no será responsable de ningún daño directo, indirecto, incidental, especial o consecuente que resulte del uso o la imposibilidad de usar este sitio web.
+        En la medida en que lo permita la ley, Mi Tienda Online no será responsable de ningún daño directo, indirecto, incidental, especial o consecuente que resulte del uso o la imposibilidad de usar este sitio web.
       </p>
       <h3>6. Enlaces a Terceros</h3>
       <p>
@@ -36,10 +36,10 @@ export default function Terms({ showCart, cartItemsList, setCartItemsList }) {
       </p>
       <h3>8. Ley Aplicable</h3>
       <p>
-        Estos términos y condiciones se regirán e interpretarán de acuerdo con las leyes de [País/Estado], y cualquier disputa relacionada con estos términos y condiciones estará sujeta a la jurisdicción exclusiva de los tribunales de [País/Estado].
+        Estos términos y condiciones se regirán e interpretarán de acuerdo con las leyes de Argentina, y cualquier disputa relacionada con estos términos y condiciones estará sujeta a la jurisdicción exclusiva de los tribunales de Argentina.
       </p>
       {/* Carrito, solo se muestra si showCart es true */}
       {showCart && <Cart items={cartItemsList} setItems={setCartItemsList} />}
-    </>
+    </div>
   );
 }

@@ -1,6 +1,6 @@
 export default function Policies({ showCart, cartItemsList, setCartItemsList }) {
   return (
-    <>
+    <div className="pageContent">
       <h2>Política de Privacidad</h2>
       <p>
         En Mi Tienda Online, nos comprometemos a proteger su privacidad. Esta política de privacidad describe cómo recopilamos, usamos y compartimos su información personal.
@@ -35,6 +35,6 @@ export default function Policies({ showCart, cartItemsList, setCartItemsList }) 
       </p>
       {/* Carrito, solo se muestra si showCart es true */}
       {showCart && <Cart items={cartItemsList} setItems={setCartItemsList} />}
-    </>
+    </div>
   );
 }
