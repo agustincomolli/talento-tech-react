@@ -54,6 +54,7 @@ function App() {
     const fetchProducts = async () => {
       try {
         setLoading(true) // Indica que la carga ha comenzado
+        
         // Si uso mockapi los campos son product.name, product.price, product.image
         // const response = await fetch("https://6810b69527f2fdac24127f97.mockapi.io/api/products");
         
