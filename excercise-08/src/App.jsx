@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+
 import Home from "./pages/Home";
 import Faq from "./pages/Faq";
 import Policies from "./pages/Policies";
 import Terms from "./pages/Terms";
+
 import Layout from "./components/Layout/Layout";
 import Main from "./components/Layout/Main";
 import styles from "./App.module.css"
@@ -129,6 +131,20 @@ function App() {
     return totalQuantity
   }
 
+  /**
+   * Renderiza el componente apropiado basado en los estados de carga, error y productos.
+   *
+   * @param {Object} params - Los parámetros para la función.
+   * @param {boolean} params.loading - Indica si los datos se están cargando actualmente.
+   * @param {string|null} params.error - El mensaje de error, si ocurrió alguno durante la carga.
+   * @param {Array} params.products - La lista de productos a mostrar.
+   * @param {Function} params.addToCart - Función para manejar la adición de un producto al carrito.
+   * @param {boolean} params.showCart - Indica si el carrito debe mostrarse.
+   * @param {Array} params.cartItemsList - La lista de elementos actualmente en el carrito.
+   * @param {Function} params.setCartItemsList - Función para actualizar la lista de elementos del carrito.
+   * @param {Object} params.styles - El objeto de estilos que contiene los nombres de las clases CSS.
+   * @returns {JSX.Element} El componente renderizado basado en el estado actual.
+   */
   function getHomeComponent({ loading, error, products, addToCart, showCart, cartItemsList, setCartItemsList, styles }) {
     if (loading) {
       /* Spinner y mensaje de carga centrados */

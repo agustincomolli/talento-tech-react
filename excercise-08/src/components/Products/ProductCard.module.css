@@ -3,6 +3,10 @@
   padding: var(--spacing-md);
   border-radius: var(--border-radius-lg);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
 }
 
 .productCard img {
@@ -24,11 +28,14 @@
   color: var(--text-secondary);
 }
 
-/* .productCard button {
-  padding: 8px 15px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-} */
+.productCard button {
+  justify-self: flex-end;
+}
+
+.productCardFooter {
+  /* Empuja el footer hacia abajo */
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

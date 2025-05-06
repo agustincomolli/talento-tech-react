@@ -18,3 +18,13 @@
   text-decoration: none;
   padding: var(--spacing-sm) var(--spacing-lg);
 }
+
+.home {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.icon {
+  color: var(--text-light);
+}

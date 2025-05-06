@@ -19,10 +19,11 @@ export default function ProductCard({ product, addToCart }) {
             <img src={product.images[0]} alt={product.title} />
             {/* Nombre del producto */}
             <h3>{product.title}</h3>
-            {/* Precio del producto */}
-            <p>$ {product.price}</p>
-            {/* Botón para agregar al carrito */}
-            <button className={`btn btn-success`} onClick={handleClick}>Agregar al Carrito</button>
+            {/* Footer: precio y botón */}
+            <div className={styles.productCardFooter}>
+                <p>$ {product.price}</p>
+                <button className={`btn btn-success`} onClick={handleClick}>Agregar al Carrito</button>
+            </div>
         </div>
     );
 }
