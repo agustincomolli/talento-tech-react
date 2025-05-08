@@ -2,9 +2,12 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
-import Home from "./pages/Home";
+// import About from "./pages/About";
+import Contact from "./pages/contact";
 import Faq from "./pages/Faq";
+import Home from "./pages/Home";
 import Policies from "./pages/Policies";
+import Products from "./pages/Products";
 import Terms from "./pages/Terms";
 
 import Layout from "./components/Layout/Layout";
@@ -54,10 +57,10 @@ function App() {
     const fetchProducts = async () => {
       try {
         setLoading(true) // Indica que la carga ha comenzado
-        
+
         // Si uso mockapi los campos son product.name, product.price, product.image
         // const response = await fetch("https://6810b69527f2fdac24127f97.mockapi.io/api/products");
-        
+
         // Si uso dummyjson los campos son procut.title, product.price, product.images[0]
         const response = await fetch("https://dummyjson.com/products");
 
@@ -146,7 +149,7 @@ function App() {
    * @param {Object} params.styles - El objeto de estilos que contiene los nombres de las clases CSS.
    * @returns {JSX.Element} El componente renderizado basado en el estado actual.
    */
-  function getHomeComponent({ loading, error, products, addToCart, showCart, cartItemsList, setCartItemsList, styles }) {
+  function getProductsComponent({ loading, error, products, addToCart, showCart, cartItemsList, setCartItemsList, styles }) {
     if (loading) {
       /* Spinner y mensaje de carga centrados */
       return (
@@ -191,10 +194,10 @@ function App() {
         <Routes>
           {/* Ruta principal: muestra spinner, error o Home según el estado */}
           <Route
-            path="/"
+            path="/products"
             element={
               <Main>
-                {getHomeComponent({
+                {getProductsComponent({
                   loading, error, products, addToCart, showCart,
                   cartItemsList, setCartItemsList, styles
                 })}
@@ -224,6 +227,15 @@ function App() {
             path="/policies"
             element={
               <Policies
+                showCart={showCart}
+                cartItemsList={cartItemsList}
+                setCartItemsList={setCartItemsList}
+              />}
+          />
+          <Route
+            path="/contact"
+            element={
+              <Contact
                 showCart={showCart}
                 cartItemsList={cartItemsList}
                 setCartItemsList={setCartItemsList}

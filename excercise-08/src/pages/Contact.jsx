@@ -1,6 +1,6 @@
 import styles from "./Contact.module.css"
 
-export default function Contact() {
+export default function Contact({ showCart, cartItemsList, setCartItemsList }) {
   return (
     <div className="pageContent">
       <h2>Contáctanos</h2>
@@ -10,17 +10,19 @@ export default function Contact() {
       </p>
 
       <form className={styles.contactForm}>
-        <label htmlFor="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required />
+        <label htmlFor="user-name">Nombre:</label>
+        <input type="text" id="user-name" name="user-name" required />
 
         <label htmlFor="email">Email:</label>
         <input type="email" id="email" name="email" required />
 
-        <label htmlFor="mensaje">Mensaje:</label>
-        <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+        <label htmlFor="message">Mensaje:</label>
+        <textarea id="message" name="message" rows="8" required></textarea>
 
-        <button type="submit">Enviar Mensaje</button>
+        <button className="btn btn-primary" type="submit">Enviar Mensaje</button>
       </form>
+      {/* Carrito, solo se muestra si showCart es true */}
+      {showCart && <Cart items={cartItemsList} setItems={setCartItemsList} />}
     </div>
   );
 }
