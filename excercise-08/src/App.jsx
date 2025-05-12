@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import About from "./pages/About";
-import Contact from "./pages/contact";
+import Contact from "./pages/Contact";
 import Faq from "./pages/Faq";
 import Home from "./pages/Home";
 import Policies from "./pages/Policies";
