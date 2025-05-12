@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
-// import About from "./pages/About";
+import About from "./pages/About";
 import Contact from "./pages/contact";
 import Faq from "./pages/Faq";
 import Home from "./pages/Home";
@@ -155,7 +155,7 @@ function App() {
       return (
         <div className={styles.spinnerContainer}>
           <div className={styles.spinner}></div>
-          <h2 className={styles.loadingText}>Cargando productos</h2>
+          <h2 className={styles.loadingText}>Cargando productos...</h2>
         </div>
       );
     }
@@ -169,9 +169,9 @@ function App() {
       );
     }
 
-    /* Renderiza Home solo si no está cargando ni hay error */
+    /* Renderiza Products solo si no está cargando ni hay error */
     return (
-      <Home
+      <Products
         products={products}
         addToCart={addToCart}
         showCart={showCart}
@@ -205,6 +205,15 @@ function App() {
             }
           />
           {/* Rutas estáticas para páginas informativas */}
+          <Route
+            path="/about"
+            element={
+              <About
+                showCart={showCart}
+                cartItemsList={cartItemsList}
+                setCartItemsList={setCartItemsList}
+              />}
+          />
           <Route
             path="/faq"
             element={

@@ -6,13 +6,13 @@ export default function Contact({ showCart, cartItemsList, setCartItemsList }) {
     event.preventDefault()
     const message = "<p>Su mensaje ha sido enviado correctamente.</p>"
       + "<p>Nos comunicaremos con usted a la brevedad.</p>"
-   
+
     Swal.fire({
       title: "Información de contacto",
       html: message,
       icon: "success",
       confirmButtonText: "Continuar",
-      footer:"<p>Muchas gracias</p>"
+      footer: "<p>Muchas gracias</p>"
     })
   };
 
@@ -36,6 +36,30 @@ export default function Contact({ showCart, cartItemsList, setCartItemsList }) {
 
         <button className="btn btn-primary" type="submit">Enviar Mensaje</button>
       </form>
+
+      <section className={styles.contactInfo}>
+        <h3>Información de Contacto</h3>
+        <p><strong>Dirección: </strong>Av Siempreviva 742 Springfield</p>
+        <p><strong>Teléfono: </strong>+123 456 789</p>
+        <p><strong>Email: </strong>info@mitienda.com</p>
+        <p>
+          <strong>Horario de Atención: </strong>
+          Lunes a Viernes, 9am - 6pm
+        </p>
+      </section>
+
+      <section className={styles.mapContainer}>
+        <h3>Nuestra Ubicación</h3>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3039.797334938792!2d-73.98517748486527!3d40.75889547932137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c64802a1%3A0x1c91217994825988!2sTimes%20Square!5e0!3m2!1ses!2sus!4v1680781036189!5m2!1ses!2sus"
+          allowFullScreen={true}
+          className={styles.map}
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title="Ubicación">
+        </iframe>
+      </section>
+
       {/* Carrito, solo se muestra si showCart es true */}
       {showCart && <Cart items={cartItemsList} setItems={setCartItemsList} />}
     </div>
