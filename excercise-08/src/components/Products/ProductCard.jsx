@@ -1,4 +1,5 @@
 import styles from "./ProductCard.module.css"
+import { Link } from "react-router-dom";
 
 /**
  * Componente que representa un solo producto.
@@ -9,16 +10,19 @@ import styles from "./ProductCard.module.css"
  * @param {Function} props.addToCart - Función para agregar el producto al carrito.
  */
 export default function ProductCard({ product, addToCart }) {
-    function handleClick() {
+    function handleClick(event) {
+        event.stopPropagation(); // Evita que el click en el botón navegue
         addToCart(product)
     };
 
     return (
         <div className={styles.productCard}>
-            {/* Imagen del producto */}
-            <img src={product.images[0]} alt={product.title} />
-            {/* Nombre del producto */}
-            <h3>{product.title}</h3>
+            <Link to={`/products/${product.id}`} title="Ver detalle">
+                {/* Imagen del producto */}
+                <img src={product.images[0]} alt={product.title} />
+                {/* Nombre del producto */}
+                <h3>{product.title}</h3>
+            </Link>
             {/* Footer: precio y botón */}
             <div className={styles.productCardFooter}>
                 <p>$ {product.price}</p>

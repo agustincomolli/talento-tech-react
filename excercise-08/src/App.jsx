@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import Policies from "./pages/Policies";
 import Products from "./pages/Products";
 import Terms from "./pages/Terms";
+import ProductDetail from "./pages/ProductDetail";
 
 import Layout from "./components/Layout/Layout";
 import Main from "./components/Layout/Main";
@@ -203,6 +204,15 @@ function App() {
                 })}
               </Main>
             }
+          />
+          <Route
+            path="/products/:id"
+            element={
+              <ProductDetail
+                showCart={showCart}
+                cartItemsList={cartItemsList}
+                setCartItemsList={setCartItemsList}
+              />}
           />
           {/* Rutas estáticas para páginas informativas */}
           <Route

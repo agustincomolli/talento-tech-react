@@ -7,6 +7,17 @@
   flex-direction: column;
   align-items: center;
   height: 100%;
+  cursor: pointer;
+}
+
+.productCard a {
+  text-decoration: none;
+  color: inherit;
+
+}
+
+.productCard:hover {
+  background-color: var(--bg-light);
 }
 
 .productCard img {
