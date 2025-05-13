@@ -7,12 +7,13 @@ import Faq from "./pages/Faq";
 import Home from "./pages/Home";
 import Policies from "./pages/Policies";
 import Products from "./pages/Products";
-import Terms from "./pages/Terms";
 import ProductDetail from "./pages/ProductDetail";
+import Terms from "./pages/Terms";
 
+import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import Layout from "./components/Layout/Layout";
+import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 import Main from "./components/Layout/Main";
-import styles from "./App.module.css"
 
 /**
  * Componente principal de la aplicación de tienda online.
@@ -149,23 +150,18 @@ function App() {
    * @param {Object} params.styles - El objeto de estilos que contiene los nombres de las clases CSS.
    * @returns {JSX.Element} El componente renderizado basado en el estado actual.
    */
-  function getProductsComponent({ loading, error, products, addToCart, showCart, cartItemsList, setCartItemsList, styles }) {
+  function getProductsComponent({ loading, error, products, addToCart, showCart, cartItemsList, setCartItemsList }) {
     if (loading) {
       /* Spinner y mensaje de carga centrados */
       return (
-        <div className={styles.spinnerContainer}>
-          <div className={styles.spinner}></div>
-          <h2 className={styles.loadingText}>Cargando productos...</h2>
-        </div>
+        <LoadingSpinner message="Cargando productos.."/>
       );
     }
 
     if (error) {
       /* Mensaje de error si ocurre un problema al cargar */
       return (
-        <div className={styles.errorContainer}>
-          <p className={styles.errorText}>Error: {error}</p>
-        </div>
+        <ErrorMessage message={error}/>
       );
     }
 
@@ -206,7 +202,7 @@ function App() {
               <Main>
                 {getProductsComponent({
                   loading, error, products, addToCart, showCart,
-                  cartItemsList, setCartItemsList, styles
+                  cartItemsList, setCartItemsList
                 })}
               </Main>
             }
