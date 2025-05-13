@@ -1,5 +1,5 @@
 
-export default function Terms({ showCart, cartItemsList, setCartItemsList }) {
+export default function Terms() {
   return (
     <div className="pageContent">
       <h2>Términos y Condiciones</h2>
@@ -38,8 +38,6 @@ export default function Terms({ showCart, cartItemsList, setCartItemsList }) {
       <p>
         Estos términos y condiciones se regirán e interpretarán de acuerdo con las leyes de Argentina, y cualquier disputa relacionada con estos términos y condiciones estará sujeta a la jurisdicción exclusiva de los tribunales de Argentina.
       </p>
-      {/* Carrito, solo se muestra si showCart es true */}
-      {showCart && <Cart items={cartItemsList} setItems={setCartItemsList} />}
     </div>
   );
 }

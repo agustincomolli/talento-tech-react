@@ -5,7 +5,7 @@ import sabrina from "../assets/sabrina.png";
 import matias from "../assets/matias.png"
 import silvia from "../assets/silvia.png"
 
-export default function About({ showCart, cartItemsList, setCartItemsList }) {
+export default function About() {
   return (
     <div className={styles.pageContainer}>
       <section className={styles.about}>
@@ -76,9 +76,6 @@ export default function About({ showCart, cartItemsList, setCartItemsList }) {
           </div>
         </div>
       </section>
-
-      {/* Carrito, solo se muestra si showCart es true */}
-      {showCart && <Cart items={cartItemsList} setItems={setCartItemsList} />}
     </div>
   );
 }

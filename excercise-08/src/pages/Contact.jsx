@@ -1,7 +1,7 @@
 import Swal from 'sweetalert2';
 import styles from "./Contact.module.css"
 
-export default function Contact({ showCart, cartItemsList, setCartItemsList }) {
+export default function Contact() {
   function handleSubmit(event) {
     event.preventDefault()
     const message = "<p>Su mensaje ha sido enviado correctamente.</p>"
@@ -59,9 +59,6 @@ export default function Contact({ showCart, cartItemsList, setCartItemsList }) {
           title="Ubicación">
         </iframe>
       </section>
-
-      {/* Carrito, solo se muestra si showCart es true */}
-      {showCart && <Cart items={cartItemsList} setItems={setCartItemsList} />}
     </div>
   );
 }

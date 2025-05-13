@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import About from "./pages/About";
@@ -191,11 +190,18 @@ function App() {
   return (
     <>
       {/* Layout recibe funciones y datos como props */}
-      <Layout toggleCart={toggleCart} cartItemCount={getTotalItemCount()}>
+      <Layout
+        toggleCart={toggleCart}
+        cartItemCount={getTotalItemCount()}
+        showCart={showCart}
+        setShowCart={setShowCart}
+        cartItemsList={cartItemsList}
+        setCartItemsList={setCartItemsList}
+      >
         <Routes>
-          {/* Ruta principal: muestra spinner, error o Home según el estado */}
-          <Route
-            path="/products"
+          <Route path="/" element={<Main><Home /></Main>} />
+          {/* Muestra spinner, error o Products según el estado */}
+          <Route path="/products"
             element={
               <Main>
                 {getProductsComponent({
@@ -205,61 +211,13 @@ function App() {
               </Main>
             }
           />
-          <Route
-            path="/products/:id"
-            element={
-              <ProductDetail
-                showCart={showCart}
-                cartItemsList={cartItemsList}
-                setCartItemsList={setCartItemsList}
-              />}
-          />
+          <Route path="/products/:id" element={<ProductDetail />} />
           {/* Rutas estáticas para páginas informativas */}
-          <Route
-            path="/about"
-            element={
-              <About
-                showCart={showCart}
-                cartItemsList={cartItemsList}
-                setCartItemsList={setCartItemsList}
-              />}
-          />
-          <Route
-            path="/faq"
-            element={
-              <Faq
-                showCart={showCart}
-                cartItemsList={cartItemsList}
-                setCartItemsList={setCartItemsList}
-              />}
-          />
-          <Route
-            path="/terms"
-            element={
-              <Terms
-                showCart={showCart}
-                cartItemsList={cartItemsList}
-                setCartItemsList={setCartItemsList}
-              />}
-          />
-          <Route
-            path="/policies"
-            element={
-              <Policies
-                showCart={showCart}
-                cartItemsList={cartItemsList}
-                setCartItemsList={setCartItemsList}
-              />}
-          />
-          <Route
-            path="/contact"
-            element={
-              <Contact
-                showCart={showCart}
-                cartItemsList={cartItemsList}
-                setCartItemsList={setCartItemsList}
-              />}
-          />
+          <Route path="/about" element={<About />} />
+          <Route path="/faq" element={<Faq />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/policies" element={<Policies />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </Layout>
     </>

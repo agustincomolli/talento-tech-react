@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function Faq({ showCart, cartItemsList, setCartItemsList }) {
+export default function Faq() {
   return (
     <div className="pageContent">
       <h2>Preguntas Frecuentes</h2>
@@ -32,8 +32,6 @@ export default function Faq({ showCart, cartItemsList, setCartItemsList }) {
       <p>
         Si olvidó su contraseña, haga clic en el enlace "¿Olvidó su contraseña?" en la página de inicio de sesión y siga las instrucciones para restablecerla.
       </p>
-      {/* Carrito, solo se muestra si showCart es true */}
-      {showCart && <Cart items={cartItemsList} setItems={setCartItemsList} />}
     </div>
   );
 }

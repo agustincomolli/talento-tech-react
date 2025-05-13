@@ -1,4 +1,4 @@
-export default function Policies({ showCart, cartItemsList, setCartItemsList }) {
+export default function Policies() {
   return (
     <div className="pageContent">
       <h2>Política de Privacidad</h2>
@@ -33,8 +33,6 @@ export default function Policies({ showCart, cartItemsList, setCartItemsList }) 
       <p>
         Si tiene alguna pregunta sobre esta política de privacidad, contáctenos a info@mitienda.com.
       </p>
-      {/* Carrito, solo se muestra si showCart es true */}
-      {showCart && <Cart items={cartItemsList} setItems={setCartItemsList} />}
     </div>
   );
 }

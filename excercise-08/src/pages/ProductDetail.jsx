@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "./ProductDetail.module.css"
 
-export default function ProductDetail({ showCart, cartItemsList, setCartItemsList }) {
+export default function ProductDetail() {
   return (
     <div className={styles.productDetail}>
       <img src="" alt="" />
@@ -14,9 +14,6 @@ export default function ProductDetail({ showCart, cartItemsList, setCartItemsLis
         <button>Agregar al carrito</button>
         <Link to="/">Volver al Inicio</Link>
       </div>
-
-      {/* Carrito, solo se muestra si showCart es true */}
-      {showCart && <Cart items={cartItemsList} setItems={setCartItemsList} />}
     </div>
   );
 }
