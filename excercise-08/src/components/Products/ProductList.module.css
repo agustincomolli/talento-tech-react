@@ -1,7 +1,3 @@
-.title {
-  margin-bottom: 15px;
-}
-
 .productsGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

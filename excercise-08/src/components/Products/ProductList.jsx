@@ -11,18 +11,15 @@ import styles from "./ProductList.module.css"
  */
 export default function ProductList({ products, addToCart }) {
     return (
-        <section>
-            <h2 className={styles.title}>Productos Disponibles</h2>
-            <div className={styles.productsGrid}>
+        <div className={styles.productsGrid}>
             {/* Itera sobre el array de productos y renderiza un componente ProductCard por cada uno */}
-                {products.map(product => (
-                    <ProductCard
-                        key={product.id}
-                        product={product}
-                        addToCart={addToCart}
-                    />
-                ))}
-            </div>
-        </section>
+            {products.map(product => (
+                <ProductCard
+                    key={product.id}
+                    product={product}
+                    addToCart={addToCart}
+                />
+            ))}
+        </div>
     );
 }

@@ -154,14 +154,14 @@ function App() {
     if (loading) {
       /* Spinner y mensaje de carga centrados */
       return (
-        <LoadingSpinner message="Cargando productos.."/>
+        <LoadingSpinner message="Cargando productos.." />
       );
     }
 
     if (error) {
       /* Mensaje de error si ocurre un problema al cargar */
       return (
-        <ErrorMessage message={error}/>
+        <ErrorMessage message={error} />
       );
     }
 
@@ -195,7 +195,7 @@ function App() {
         setCartItemsList={setCartItemsList}
       >
         <Routes>
-          <Route path="/" element={<Main><Home /></Main>} />
+          <Route path="/" element={<Main><Home addToCart={addToCart} /></Main>} />
           {/* Muestra spinner, error o Products según el estado */}
           <Route path="/products"
             element={
