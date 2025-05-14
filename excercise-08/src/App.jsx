@@ -16,21 +16,29 @@ import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 import Main from "./components/Layout/Main";
 
 /**
- * Componente principal de la aplicación de tienda online.
- * Maneja el estado global del carrito y la visibilidad del mismo.
+ * Componente principal de la aplicación.
  * 
- * Configura las rutas principales de la aplicación usando React Router:
- * - "/"         : Página principal con productos y carrito.
- * - "/faq"      : Página de preguntas frecuentes.
- * - "/terms"    : Página de términos y condiciones.
- * - "/policies" : Página de políticas de privacidad.
+ * - Administra el estado global del carrito y la visibilidad del mismo usando useState.
+ * - Obtiene los productos desde una API al montar el componente usando useEffect.
+ * - Maneja los estados de carga y error para la obtención de productos.
+ * - Define las rutas principales de la aplicación usando React Router:
+ *   - "/"           : Página principal (Home).
+ *   - "/products"   : Lista de productos (Products).
+ *   - "/products/:id": Detalle de producto.
+ *   - "/faq"        : Preguntas frecuentes.
+ *   - "/terms"      : Términos y condiciones.
+ *   - "/policies"   : Políticas de privacidad.
+ *   - "/about"      : Sobre nosotros.
+ *   - "/contact"    : Contacto.
  * 
- * Cada ruta puede recibir props si necesita mostrar el carrito o manipular el estado global.
- * Se utiliza lógica condicional en la ruta "/" para mostrar un spinner, un mensaje de error o el contenido principal según el estado de la app.
+ * Props y funciones importantes:
+ * - toggleCart: Alterna la visibilidad del carrito.
+ * - addToCart: Agrega productos al carrito.
+ * - getTotalItemCount: Devuelve la cantidad total de productos en el carrito.
+ * - getProductsComponent: Renderiza el contenido de la página de productos según el estado (cargando, error, datos).
  */
 function App() {
   // Estado para mostrar u ocultar el carrito de compras.
-  // useState retorna un array con el valor actual y una función para actualizarlo.
   const [showCart, setShowCart] = useState(false);
 
   // Estado que contiene la lista de productos agregados al carrito.
@@ -45,55 +53,36 @@ function App() {
   const [error, setError] = useState(null)
 
   /**
-   * useEffect se utiliza para realizar efectos secundarios en componentes funcionales.
-   * En este caso, se usa para obtener los productos desde una API al montar el componente.
-   * El array vacío [] como segundo argumento indica que este efecto solo se ejecuta una vez,
-   * cuando el componente se monta.
+   * Obtiene los productos desde la API al montar el componente.
+   * Maneja los estados de carga y error.
    */
   useEffect(() => {
-    /**
-     * Función asíncrona para obtener los productos desde la API.
-     * Maneja el estado de carga y posibles errores.
-     */
     const fetchProducts = async () => {
       try {
-        setLoading(true) // Indica que la carga ha comenzado
-
-        // Si uso mockapi los campos son product.name, product.price, product.image
-        // const response = await fetch("https://6810b69527f2fdac24127f97.mockapi.io/api/products");
-
-        // Si uso dummyjson los campos son procut.title, product.price, product.images[0]
+        setLoading(true)
+        // Puedes cambiar la URL según la API que uses
         const response = await fetch("https://dummyjson.com/products");
-
         if (!response.ok) {
-          // Si la respuesta no es exitosa, lanza un error
           throw new Error("Error al cargar los productos.");
         }
-
         const data = await response.json();
-
         // Simula una demora de 4 segundos antes de mostrar los productos
         setTimeout(() => {
-          setProducts(data.products); // Guarda los productos en el estado
-          setError(null);    // Limpia cualquier error anterior          
-          setLoading(false); // Indica que la carga ha finalizado
+          setProducts(data.products);
+          setError(null);
+          setLoading(false);
         }, 4000);
       } catch (error) {
-        setError(error.message); // Guarda el mensaje de error
-        setProducts([]);         // Limpia los productos si hay error
-        setLoading(false); // Indica que la carga ha finalizado
-      } finally {
-        // No uso finally porque quiero simular que la carga de datos tarda
+        setError(error.message);
+        setProducts([]);
+        setLoading(false);
       }
     };
-
     fetchProducts();
-    // El array vacío [] significa que este efecto solo se ejecuta al montar el componente
   }, [])
 
   /**
    * Alterna la visibilidad del carrito de compras.
-   * Cambia el valor de showCart entre true y false.
    */
   function toggleCart() {
     setShowCart(!showCart);
@@ -107,9 +96,7 @@ function App() {
    */
   function addToCart(product) {
     const existingItem = cartItemsList.find(item => item.id === product.id)
-
     if (existingItem) {
-      // Si el producto ya está en el carrito, aumenta la cantidad.
       setCartItemsList(
         cartItemsList.map(item =>
           item.id === product.id
@@ -118,7 +105,6 @@ function App() {
         )
       )
     } else {
-      // Si no está, lo agrega con cantidad 1.
       setCartItemsList([...cartItemsList, { ...product, quantity: 1 }])
     }
   };
@@ -129,7 +115,6 @@ function App() {
    */
   function getTotalItemCount() {
     let totalQuantity = 0;
-
     cartItemsList.forEach(item => {
       totalQuantity += item.quantity
     });
@@ -137,35 +122,32 @@ function App() {
   }
 
   /**
-   * Renderiza el componente apropiado basado en los estados de carga, error y productos.
-   *
-   * @param {Object} params - Los parámetros para la función.
-   * @param {boolean} params.loading - Indica si los datos se están cargando actualmente.
-   * @param {string|null} params.error - El mensaje de error, si ocurrió alguno durante la carga.
-   * @param {Array} params.products - La lista de productos a mostrar.
-   * @param {Function} params.addToCart - Función para manejar la adición de un producto al carrito.
-   * @param {boolean} params.showCart - Indica si el carrito debe mostrarse.
-   * @param {Array} params.cartItemsList - La lista de elementos actualmente en el carrito.
-   * @param {Function} params.setCartItemsList - Función para actualizar la lista de elementos del carrito.
-   * @param {Object} params.styles - El objeto de estilos que contiene los nombres de las clases CSS.
-   * @returns {JSX.Element} El componente renderizado basado en el estado actual.
+   * Renderiza el componente adecuado para la página de productos según el estado.
+   * Si está cargando, muestra un spinner.
+   * Si hay error, muestra el mensaje de error.
+   * Si hay productos, muestra el listado de productos.
+   * 
+   * @param {Object} params - Parámetros para renderizar el componente.
+   * @param {boolean} params.loading - Indica si los datos se están cargando.
+   * @param {string|null} params.error - Mensaje de error si ocurrió alguno.
+   * @param {Array} params.products - Lista de productos a mostrar.
+   * @param {Function} params.addToCart - Función para agregar productos al carrito.
+   * @param {boolean} params.showCart - Indica si el carrito está visible.
+   * @param {Array} params.cartItemsList - Lista de productos en el carrito.
+   * @param {Function} params.setCartItemsList - Función para actualizar el carrito.
+   * @returns {JSX.Element} El componente correspondiente según el estado.
    */
   function getProductsComponent({ loading, error, products, addToCart, showCart, cartItemsList, setCartItemsList }) {
     if (loading) {
-      /* Spinner y mensaje de carga centrados */
       return (
         <LoadingSpinner message="Cargando productos.." />
       );
     }
-
     if (error) {
-      /* Mensaje de error si ocurre un problema al cargar */
       return (
         <ErrorMessage message={error} />
       );
     }
-
-    /* Renderiza Products solo si no está cargando ni hay error */
     return (
       <Products
         products={products}
@@ -177,15 +159,9 @@ function App() {
     );
   }
 
-  // Renderiza la estructura principal de la app.
-  // Pasa funciones y estados como props a los componentes hijos.
-  // 
-  // <Routes> define las rutas de la aplicación:
-  // - La ruta "/" usa lógica condicional para mostrar un spinner, un error o el componente Home.
-  // - Las rutas "/faq", "/terms" y "/policies" muestran sus páginas correspondientes y reciben props si necesitan mostrar el carrito.
+  // Renderiza la estructura principal de la app y define las rutas.
   return (
     <>
-      {/* Layout recibe funciones y datos como props */}
       <Layout
         toggleCart={toggleCart}
         cartItemCount={getTotalItemCount()}
@@ -196,7 +172,6 @@ function App() {
       >
         <Routes>
           <Route path="/" element={<Main><Home addToCart={addToCart} /></Main>} />
-          {/* Muestra spinner, error o Products según el estado */}
           <Route path="/products"
             element={
               <Main>
@@ -208,7 +183,6 @@ function App() {
             }
           />
           <Route path="/products/:id" element={<ProductDetail />} />
-          {/* Rutas estáticas para páginas informativas */}
           <Route path="/about" element={<About />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/terms" element={<Terms />} />
