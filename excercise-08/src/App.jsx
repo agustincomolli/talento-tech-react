@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import { fetchAllProducts } from "./api/products";
 
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -55,22 +56,11 @@ function App() {
      * Función asíncrona para obtener los productos desde la API.
      * Maneja el estado de carga y posibles errores.
      */
-    const fetchProducts = async () => {
+    const getProducts = async () => {
       try {
         setLoading(true) // Indica que la carga ha comenzado
 
-        // Si uso mockapi los campos son product.name, product.price, product.image
-        // const response = await fetch("https://6810b69527f2fdac24127f97.mockapi.io/api/products");
-
-        // Si uso dummyjson los campos son procut.title, product.price, product.images[0]
-        const response = await fetch("https://dummyjson.com/products");
-
-        if (!response.ok) {
-          // Si la respuesta no es exitosa, lanza un error
-          throw new Error("Error al cargar los productos.");
-        }
-
-        const data = await response.json();
+        const data = await fetchAllProducts();
 
         // Simula una demora de 4 segundos antes de mostrar los productos
         setTimeout(() => {
@@ -87,7 +77,7 @@ function App() {
       }
     };
 
-    fetchProducts();
+    getProducts();
     // El array vacío [] significa que este efecto solo se ejecuta al montar el componente
   }, [])
 
@@ -207,7 +197,7 @@ function App() {
               </Main>
             }
           />
-          <Route path="/products/:id" element={<ProductDetail />} />
+          <Route path="/products/:id" element={<ProductDetail addToCart={addToCart} />} />
           {/* Rutas estáticas para páginas informativas */}
           <Route path="/about" element={<About />} />
           <Route path="/faq" element={<Faq />} />

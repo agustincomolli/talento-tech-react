@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { fetchFeaturedProducts } from "../api/products";
 
 import ErrorMessage from "../components/ErrorMessage/ErrorMessage";
 import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
@@ -13,11 +14,10 @@ export default function Home({ addToCart }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchTopProducts = async () => {
+    const getTopProducts = async () => {
       try {
         setLoading(true);
-        const response = await fetch("https://dummyjson.com/products?limit=3&skip=3&sortBy=rating&order=desc");
-        const data = await response.json();
+        const data = await fetchFeaturedProducts();
         setTopProducts(data.products);
         setError(null);
       } catch (err) {
@@ -27,7 +27,7 @@ export default function Home({ addToCart }) {
         setLoading(false);
       }
     };
-    fetchTopProducts();
+    getTopProducts();
   }, []);
 
   return (
