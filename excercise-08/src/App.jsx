@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import { fetchAllProducts } from "./api/products";
 
 import About from "./pages/About";
+import CarDetail from "./pages/CartDetail";
 import Contact from "./pages/Contact";
 import Faq from "./pages/Faq";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
+import PageNotFound from "./pages/PageNotFound";
 import Policies from "./pages/Policies";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
@@ -14,6 +18,7 @@ import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import Layout from "./components/Layout/Layout";
 import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 import Main from "./components/Layout/Main";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
 /**
  * Componente principal de la aplicación.
@@ -57,15 +62,27 @@ function App() {
    * Maneja los estados de carga y error.
    */
   useEffect(() => {
+    /**
+     * Función asíncrona para obtener los productos desde la API.
+     * Maneja el estado de carga y posibles errores.
+     */
     const fetchProducts = async () => {
       try {
-        setLoading(true)
-        // Puedes cambiar la URL según la API que uses
+        setLoading(true) // Indica que la carga ha comenzado
+
+        // Si uso mockapi los campos son product.name, product.price, product.image
+        // const response = await fetch("https://6810b69527f2fdac24127f97.mockapi.io/api/products");
+
+        // Si uso dummyjson los campos son procut.title, product.price, product.images[0]
         const response = await fetch("https://dummyjson.com/products");
+
         if (!response.ok) {
+          // Si la respuesta no es exitosa, lanza un error
           throw new Error("Error al cargar los productos.");
         }
+
         const data = await response.json();
+
         // Simula una demora de 4 segundos antes de mostrar los productos
         setTimeout(() => {
           setProducts(data.products);
@@ -78,7 +95,9 @@ function App() {
         setLoading(false);
       }
     };
+
     fetchProducts();
+    // El array vacío [] significa que este efecto solo se ejecuta al montar el componente
   }, [])
 
   /**
@@ -183,11 +202,15 @@ function App() {
             }
           />
           <Route path="/products/:id" element={<ProductDetail />} />
+          {/* Rutas estáticas para páginas informativas */}
           <Route path="/about" element={<About />} />
-          <Route path="/faq" element={<Faq />} />
-          <Route path="/terms" element={<Terms />} />
-          <Route path="/policies" element={<Policies />} />
+          <Route path="/cart" element={<PrivateRoute><CarDetail /></PrivateRoute>} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/faq" element={<Faq />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/policies" element={<Policies />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Layout>
     </>
