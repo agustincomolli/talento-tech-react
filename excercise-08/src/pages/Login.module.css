@@ -1,5 +1,10 @@
 .loginContent {
   margin-bottom: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+   min-height: 50vh;
 }
 
 .loginContent h2 {
@@ -26,4 +31,8 @@
 
 .loginForm input {
   padding: var(--spacing-xs);
+}
+
+.loginButton {
+  padding: 10px
 }

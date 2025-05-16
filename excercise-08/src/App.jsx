@@ -70,18 +70,7 @@ function App() {
       try {
         setLoading(true) // Indica que la carga ha comenzado
 
-        // Si uso mockapi los campos son product.name, product.price, product.image
-        // const response = await fetch("https://6810b69527f2fdac24127f97.mockapi.io/api/products");
-
-        // Si uso dummyjson los campos son procut.title, product.price, product.images[0]
-        const response = await fetch("https://dummyjson.com/products");
-
-        if (!response.ok) {
-          // Si la respuesta no es exitosa, lanza un error
-          throw new Error("Error al cargar los productos.");
-        }
-
-        const data = await response.json();
+        const data = await fetchAllProducts();
 
         // Simula una demora de 4 segundos antes de mostrar los productos
         setTimeout(() => {
@@ -201,7 +190,7 @@ function App() {
               </Main>
             }
           />
-          <Route path="/products/:id" element={<ProductDetail />} />
+          <Route path="/products/:id" element={<ProductDetail addToCart={addToCart} />} />
           {/* Rutas estáticas para páginas informativas */}
           <Route path="/about" element={<About />} />
           <Route path="/cart" element={<PrivateRoute><CarDetail /></PrivateRoute>} />
