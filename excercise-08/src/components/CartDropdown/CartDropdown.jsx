@@ -1,5 +1,6 @@
-import styles from "./Cart.module.css"
-import CartItem from "./CartItem"
+import { useNavigate } from "react-router-dom";
+import styles from "./CartDropdown.module.css"
+import CartItem from "./CartDropdownItem"
 
 /**
  * Componente que representa el carrito de compras.
@@ -10,6 +11,8 @@ import CartItem from "./CartItem"
  * @param {Function} props.setItems - Función para actualizar la lista de productos en el carrito.
  */
 export default function Cart({ items, setItems }) {
+    // Hook para navegar
+    const navigate = useNavigate();
     /**
      * Calcula el subtotal sumando el precio por la cantidad de cada producto.
      * @returns {string} Subtotal formateado con dos decimales.
@@ -31,6 +34,10 @@ export default function Cart({ items, setItems }) {
         // Filtra el producto que no coincide con el id recibido.
         setItems(items.filter(item => item.id !== id))
     };
+
+    function handleClick() {
+        navigate("/cart")
+    }
 
     /**
      * Actualiza la cantidad de un producto en el carrito.
@@ -74,8 +81,10 @@ export default function Cart({ items, setItems }) {
             {/* Muestra el subtotal y botones de acción */}
             <div className={styles.cartSummary}>
                 <p>Subtotal: $ {getSubtotal()}</p>
-                <button className={`btn btn-primary ${styles.cartSummaryButton}`}>Ver Carrito</button>
-                <button className={`btn btn-success ${styles.cartSummaryButton}`}>Finalizar Compra</button>
+                <button className={`btn btn-primary ${styles.cartSummaryButton}`} onClick={handleClick}>
+                    Ver Carrito
+                </button>
+                {/* <button className={`btn btn-success ${styles.cartSummaryButton}`}>Finalizar Compra</button> */}
             </div>
         </div>
     );

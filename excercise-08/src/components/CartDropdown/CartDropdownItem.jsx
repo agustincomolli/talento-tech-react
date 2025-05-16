@@ -1,4 +1,4 @@
-import styles from "./Cart.module.css"
+import styles from "./CartDropdown.module.css"
 
 /**
  * Componente que representa un producto dentro del carrito.

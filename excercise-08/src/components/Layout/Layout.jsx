@@ -4,7 +4,7 @@ import Header from "./Header"
 import Nav from "./Nav"
 import Main from "./Main"
 import Footer from "./Footer"
-import Cart from "../Cart/Cart"
+import CartDropdown from "../CartDropdown/CartDropdown"
 
 import styles from "./Layout.module.css"
 
@@ -57,7 +57,7 @@ export default function Layout({ children, toggleCart, cartItemCount, showCart, 
             {showCart && (
                 // El ref permite detectar clics fuera de este div para cerrar el carrito
                 <div ref={cartRef}>
-                    <Cart items={cartItemsList} setItems={setCartItemsList} />
+                    <CartDropdown items={cartItemsList} setItems={setCartItemsList} />
                 </div>
             )}
         </div>

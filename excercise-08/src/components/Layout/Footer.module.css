@@ -1,4 +1,4 @@
-footer {
+.footer {
   background-color: var(--bg-dark);
   color: var(--text-light);
   padding: 20px;
@@ -7,23 +7,23 @@ footer {
   align-items: flex-start;
 }
 
-footer h4 {
+.footer h4 {
   margin-top: 0;
   margin-bottom: 10px;
 }
 
-footer ul {
+.footer ul {
   list-style: none;
   padding: 0;
 }
 
-footer ul li a {
+.footer ul li a {
   color: var(--text-muted);
   text-decoration: none;
   border-bottom: 1px solid transparent;
 }
 
-footer ul li a:hover {
+.footer ul li a:hover {
   border-bottom: 1px solid var(--text-muted);
 }
 

@@ -3,9 +3,12 @@ import { Routes, Route } from "react-router-dom";
 import { fetchAllProducts } from "./api/products";
 
 import About from "./pages/About";
+import CarDetail from "./pages/CartDetail";
 import Contact from "./pages/Contact";
 import Faq from "./pages/Faq";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
+import PageNotFound from "./pages/PageNotFound";
 import Policies from "./pages/Policies";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
@@ -15,6 +18,7 @@ import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import Layout from "./components/Layout/Layout";
 import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 import Main from "./components/Layout/Main";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
 /**
  * Componente principal de la aplicación de tienda online.
@@ -200,10 +204,13 @@ function App() {
           <Route path="/products/:id" element={<ProductDetail addToCart={addToCart} />} />
           {/* Rutas estáticas para páginas informativas */}
           <Route path="/about" element={<About />} />
-          <Route path="/faq" element={<Faq />} />
-          <Route path="/terms" element={<Terms />} />
-          <Route path="/policies" element={<Policies />} />
+          <Route path="/cart" element={<PrivateRoute><CarDetail /></PrivateRoute>} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/faq" element={<Faq />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/policies" element={<Policies />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Layout>
     </>
