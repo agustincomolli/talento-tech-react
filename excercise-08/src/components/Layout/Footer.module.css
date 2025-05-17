@@ -44,3 +44,7 @@
   color: inherit;
   font-size: var(--font-size-lg);
 }
+
+.socialNetworks a:hover{
+  color: var(--text-muted);
+}
