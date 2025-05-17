@@ -1,6 +1,24 @@
+import { useNavigate } from "react-router-dom";
+
 import styles from "./Login.module.css";
 
 export default function Login() {
+  const navigate = useNavigate();
+
+  function handleClick(event) {
+    event.preventDefault();
+    const form = event.target.form || event.target.closest("form");
+    const user = form.user.value;
+    const password = form.password.value;
+
+    if (user.toLowerCase() == "usuario" && password.toLowerCase() == "contraseña") {
+      console.log("OK")
+      // Simulación de inicio de sesión exitoso
+      localStorage.setItem("authToken", "miTokenSecreto");
+      // Redirigir al usuario a la página a la que intentaba acceder
+      navigate(-1);
+    }
+  }
 
   return (
     <div className={styles.loginContent}>
@@ -8,7 +26,7 @@ export default function Login() {
       <form action="" className={styles.loginForm}>
         <input type="text" placeholder="Usuario" name="user" />
         <input type="password" name="password" id="password" placeholder="Contraseña" />
-        <button className={`btn btn-primary ${styles.loginButton}`} type="submit">Iniciar sesión</button>
+        <button className={`btn btn-primary ${styles.loginButton}`} onClick={handleClick} type="submit">Iniciar sesión</button>
       </form>
     </div>
   );

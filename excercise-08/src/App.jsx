@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { fetchAllProducts } from "./api/products";
 
 import About from "./pages/About";
-import CarDetail from "./pages/CartDetail";
+import CartDetail from "./pages/CartDetail";
 import Contact from "./pages/Contact";
 import Faq from "./pages/Faq";
 import Home from "./pages/Home";
@@ -193,7 +193,9 @@ function App() {
           <Route path="/products/:id" element={<ProductDetail addToCart={addToCart} />} />
           {/* Rutas estáticas para páginas informativas */}
           <Route path="/about" element={<About />} />
-          <Route path="/cart" element={<PrivateRoute><CarDetail /></PrivateRoute>} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/cart" element={<CartDetail />} />
+          </Route>
           <Route path="/contact" element={<Contact />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/login" element={<Login />} />
