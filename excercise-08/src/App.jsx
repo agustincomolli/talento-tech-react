@@ -20,6 +20,7 @@ import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 import Main from "./components/Layout/Main";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
+import 'boxicons/css/boxicons.min.css';
 /**
  * Componente principal de la aplicación.
  * 
@@ -194,7 +195,7 @@ function App() {
           {/* Rutas estáticas para páginas informativas */}
           <Route path="/about" element={<About />} />
           <Route element={<PrivateRoute />}>
-            <Route path="/cart" element={<CartDetail />} />
+            <Route path="/cart" element={<CartDetail items={cartItemsList} setItems={setCartItemsList} />} />
           </Route>
           <Route path="/contact" element={<Contact />} />
           <Route path="/faq" element={<Faq />} />

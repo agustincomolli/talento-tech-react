@@ -36,13 +36,13 @@
 
 .socialNetworks {
   display: flex;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-md);
 }
 
 .socialNetworks a {
   text-decoration: none;
   color: inherit;
-  font-size: var(--font-size-lg);
+  font-size: 1.5rem;
 }
 
 .socialNetworks a:hover{
